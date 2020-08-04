@@ -47,3 +47,5 @@ while True:
     # Spin up client thread to handle incoming data
     client_handler = threading.Thread(target=handle_client, args=(client,))
     client_handler.start()
+
+server.close((bind_ip, bind_port))  # Releases connection/port
