@@ -1,18 +1,21 @@
 #! /usr/bin/python
+"""A simple UDP client"""
 
 import socket
 
 target_host = '127.0.0.1'
 target_port = 80
 
-# create a socket object
+# create a socket object, IPv4 UDP
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # send some data
+print 'Sending data'
 client.sendto('AAABBBCCC', (target_host, target_port))
 
 # receive data
-data, addr = client.recvfrom(4096)
+print 'Receiving data'
+data = client.recvfrom(4096)
 
 print data
-print addr
+# print addr
