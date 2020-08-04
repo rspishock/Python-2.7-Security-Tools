@@ -1,9 +1,23 @@
 #! /usr/bin/python
+"""A simple TCP server."""
+
 import threading
+import optparse
 import socket
 
+parser = optparse.OptionParser()
+
+parser.add_option('-p', '--p', dest='port', help='Enter TCP port to connect to.')
+
+(options, arguments) = parser.parse_args()
+
+port = options.port
+
+target_host = target
+target_port = int(port)
+
 bind_ip = '0.0.0.0'
-bind_port = 9999
+bind_port = target_port
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
