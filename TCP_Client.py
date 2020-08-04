@@ -26,7 +26,7 @@ client.connect((target_host, target_port))
 
 # send some data
 print 'Sending GET request'
-client.send(bytes("GET / HTTP/1.1\r\nHost: google.com\r\n\r\n"))
+client.send(bytes("GET / HTTP/1.1\r\nHost: %s\r\n\r\n") % target_host)
 
 # receive some data
 print 'Receiving data'

@@ -12,8 +12,6 @@ parser.add_option('-p', '--p', dest='port', help='Enter TCP port to connect to.'
 (options, arguments) = parser.parse_args()
 
 port = options.port
-
-target_host = target
 target_port = int(port)
 
 bind_ip = '0.0.0.0'
