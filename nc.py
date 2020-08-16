@@ -192,5 +192,22 @@ def client_handler(client_socket):
         except:
             client_socket.send('Failed to save file to %s\r\n' %upload_destination)
 
+    # check for command execution
+    if command:
+        while True:
+            # show a smiple prompt
+            client_socket.send('nc:#> ')
+
+            # receive until linefeed (enter key)
+            cmd_buffer = ''
+            while '\n' not in cmd_buffer:
+                cmd_buffer += client_socket.recv(1024)
+
+            # return command output
+            response = run_command(cmd_buffer)
+
+            # return response
+            client_socket.send(response)
+
 
 main()
