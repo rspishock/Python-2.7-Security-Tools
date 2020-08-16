@@ -174,7 +174,7 @@ def client_handler(client_socket):
 
         # keep reading data until none is available
         while True:
-            data - client_socket.recv(1024)
+            data = client_socket.recv(1024)
 
             if not data:
                 break
@@ -195,7 +195,7 @@ def client_handler(client_socket):
     # check for command execution
     if command:
         while True:
-            # show a smiple prompt
+            # show a simple prompt
             client_socket.send('nc:#> ')
 
             # receive until linefeed (enter key)
