@@ -48,8 +48,7 @@ def main():
 
     # read the commandline options
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hle:t:p:cu', ['help', 'listen', 'execute', 'target', 'port', 'command'
-                                                                , 'upload'])
+        opts, args = getopt.getopt(sys.argv[1:], 'hle:t:p:cu', ['help', 'listen', 'execute', 'target', 'port', 'command', 'upload'])
     except getopt.GetoptError as err:
         print(str(err))
         usage()
@@ -70,8 +69,7 @@ def main():
         elif o in ('-p', '--port'):
             port = int(a)
         else:
-            assert  False, "Unhandled Option"
-
+            assert False, "Unhandled Option"
 
     # listen or just send data
     if not listen and len(target) and port > 0:
@@ -154,7 +152,7 @@ def run_command(command):
     # run the command and get the output back
     try:
         output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
-    except:
+    except Exception:
         output = 'Failed to execute command.\r\n'
 
     # send output back to client
@@ -189,7 +187,7 @@ def client_handler(client_socket):
 
             # acknowledge that file has been written
             client_socket.send('Successfully saved file to %s\r\n' %upload_destination)
-        except:
+        except Exception:
             client_socket.send('Failed to save file to %s\r\n' %upload_destination)
 
     # check for command execution
