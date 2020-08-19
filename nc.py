@@ -186,9 +186,9 @@ def client_handler(client_socket):
             file_descriptor.close()
 
             # acknowledge that file has been written
-            client_socket.send('Successfully saved file to %s\r\n' %upload_destination)
+            client_socket.send('Successfully saved file to %s\r\n' % upload_destination)
         except Exception:
-            client_socket.send('Failed to save file to %s\r\n' %upload_destination)
+            client_socket.send('Failed to save file to %s\r\n' % upload_destination)
 
     # check for command execution
     if command:
