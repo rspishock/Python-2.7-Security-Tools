@@ -2,6 +2,7 @@
 """A simple TCP Proxy"""
 
 import threading
+import hexdump
 import socket
 import sys
 
