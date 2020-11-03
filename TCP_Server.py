@@ -2,20 +2,11 @@
 """A simple TCP server."""
 
 import threading
-import optparse
 import socket
 
-parser = optparse.OptionParser()
-
-parser.add_option('-p', '--p', dest='port', help='Enter TCP port to connect to.')
-
-(options, arguments) = parser.parse_args()
-
-port = options.port
-target_port = int(port)
 
 bind_ip = '0.0.0.0'
-bind_port = target_port
+bind_port = 9999
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -47,5 +38,3 @@ while True:
     # Spin up client thread to handle incoming data
     client_handler = threading.Thread(target=handle_client, args=(client,))
     client_handler.start()
-
-server.close((bind_ip, bind_port))  # Releases connection/port
