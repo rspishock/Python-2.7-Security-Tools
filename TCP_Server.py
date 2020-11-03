@@ -40,5 +40,5 @@ while True:
         client_handler = threading.Thread(target=handle_client, args=(client,))
         client_handler.start()
     except KeyboardInterrupt:
-        print('[-] Exiting script...')
+        print('\n[-] Exiting script...')
         exit()
