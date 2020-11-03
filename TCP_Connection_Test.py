@@ -1,5 +1,5 @@
 #! /usr/bin/python
-"""A simple TCP client"""
+"""A simple script to verify TCP connectivity by sending a GET request to www.google.com"""
 
 import socket
 

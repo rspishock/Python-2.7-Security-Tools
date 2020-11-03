@@ -31,10 +31,14 @@ def handle_client(client_socket):
 
 
 while True:
-    client, addr = server.accept()
+    try:
+        client, addr = server.accept()
 
-    print '[*] Accepted connection from: %s:%d' % (addr[0], addr[1])
+        print '[*] Accepted connection from: %s:%d' % (addr[0], addr[1])
 
-    # Spin up client thread to handle incoming data
-    client_handler = threading.Thread(target=handle_client, args=(client,))
-    client_handler.start()
+        # Spin up client thread to handle incoming data
+        client_handler = threading.Thread(target=handle_client, args=(client,))
+        client_handler.start()
+    except KeyboardInterrupt:
+        print('[-] Exiting script...')
+        exit()
