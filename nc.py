@@ -17,24 +17,6 @@ upload_destination = ''
 port = 0
 
 
-def usage():
-    print 'NC Tool'
-    print
-    print 'Usage: ./nc.py -t --target <target_host> -p --port <port>'
-    print '-l --listen\t\t\t\t\t\t - listen on [host]:[port] for incoming connections.'
-    print '-e --execute=<file_to_execute>\t - execute the given file upon receiving a connection.'
-    print '-c --command\t\t\t\t\t - initialize a command shell.'
-    print '-u --upload=<destination>\t\t - upon receiving a connection, upload a file and write to [destination].'
-    print
-    print
-    print 'Examples:'
-    print 'nc.py -t 192.168.0.1 -p 5555 -l -c'
-    print 'nc.py --target 192.168.0.1 -p 5555 -l -u=c:\\target.exe'
-    print 'nc.py -t 192.168.0.1 --port 5555 -l -e=\'cat /etc/passwd\''
-    print 'echo "ABCDEFGHI" | ./nc.py -t 192.168.11.12 -p 135'
-    sys.exit(0)
-
-
 def client_sender(buffer):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -127,7 +109,7 @@ def client_handler(client_socket):
 
         # now take these bytes and attempt to write them out
         try:
-            file_descriptor = open(upload_destination, 'wb')
+            file_descriptor = open(upload_destination, "wb")
             file_descriptor.write(file_buffer)
             file_descriptor.close()
 
@@ -149,8 +131,8 @@ def client_handler(client_socket):
             client_socket.send('<NC:#> ')
 
             # receive until linefeed (enter key)
-            cmd_buffer = ''
-            while '\n' not in cmd_buffer:
+            cmd_buffer = ""
+            while "\n" not in cmd_buffer:
                 cmd_buffer += client_socket.recv(1024)
 
             # return command output
@@ -158,6 +140,24 @@ def client_handler(client_socket):
 
             # return response
             client_socket.send(response)
+
+
+def usage():
+    print 'NC Tool'
+    print
+    print 'Usage: ./nc.py -t --target <target_host> -p --port <port>'
+    print '-l --listen\t\t\t\t\t\t - listen on [host]:[port] for incoming connections.'
+    print '-e --execute=<file_to_execute>\t - execute the given file upon receiving a connection.'
+    print '-c --command\t\t\t\t\t - initialize a command shell.'
+    print '-u --upload=<destination>\t\t - upon receiving a connection, upload a file and write to [destination].'
+    print
+    print
+    print 'Examples:'
+    print 'nc.py -t 192.168.0.1 -p 5555 -l -c'
+    print 'nc.py --target 192.168.0.1 -p 5555 -l -u=c:\\target.exe'
+    print 'nc.py -t 192.168.0.1 --port 5555 -l -e=\'cat /etc/passwd\''
+    print 'echo "ABCDEFGHI" | ./nc.py -t 192.168.11.12 -p 135'
+    sys.exit(0)
 
 
 def main():
@@ -173,8 +173,8 @@ def main():
 
     # read the commandline options
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hle:t:p:cu', ['help', 'listen', 'execute', 'target', 'port', 'command'
-            , 'upload'])
+        opts, args = getopt.getopt(sys.argv[1:], 'hle:t:p:cu', ['help', 'listen', 'execute', 'target', 'port',
+                                                                'command', 'upload'])
     except getopt.GetoptError as err:
         print(str(err))
         usage()
