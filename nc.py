@@ -18,16 +18,16 @@ port = 0
 
 
 def usage():
-    print 'Net Tool'
+    print 'NC Tool'
     print
-    print 'Usage: nc.py -t --target <target_host> -p --port <port>'
+    print 'Usage: ./nc.py -t --target <target_host> -p --port <port>'
     print '-l --listen\t\t\t\t\t\t - listen on [host]:[port] for incoming connections.'
     print '-e --execute=<file_to_execute>\t - execute the given file upon receiving a connection.'
     print '-c --command\t\t\t\t\t - initialize a command shell.'
     print '-u --upload=<destination>\t\t - upon receiving a connection, upload a file and write to [destination].'
     print
     print
-    print 'Examples: '
+    print 'Examples:'
     print 'nc.py -t 192.168.0.1 -p 5555 -l -c'
     print 'nc.py --target 192.168.0.1 -p 5555 -l -u=c:\\target.exe'
     print 'nc.py -t 192.168.0.1 --port 5555 -l -e=\'cat /etc/passwd\''
@@ -48,7 +48,8 @@ def main():
 
     # read the commandline options
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hle:t:p:cu', ['help', 'listen', 'execute', 'target', 'port', 'command', 'upload'])
+        opts, args = getopt.getopt(sys.argv[1:], 'hle:t:p:cu', ['help', 'listen', 'execute', 'target', 'port', 'command'
+            , 'upload'])
     except getopt.GetoptError as err:
         print(str(err))
         usage()
