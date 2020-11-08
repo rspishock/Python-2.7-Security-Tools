@@ -137,10 +137,16 @@ def client_handler(client_socket):
             client_socket.send('Failed to save file to %s\r\n' % upload_destination)
 
     # check for command execution
+    if len(execute):
+        # run the command
+        output = run_command(execute)
+        client_socket.send(output)
+
+    # now, go into another look if a command shell was requested
     if command:
         while True:
             # show a simple prompt
-            client_socket.send('nc:#> ')
+            client_socket.send('<NC:#> ')
 
             # receive until linefeed (enter key)
             cmd_buffer = ''
@@ -200,14 +206,10 @@ def main():
         # send data off
         client_sender(buffer)
 
-
     # listen and potentially upload things, execute commands, and drop a shell back
     # depending on command line options above
     if listen:
         server_loop()
-
-
-
 
 
 main()
