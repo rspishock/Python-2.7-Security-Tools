@@ -165,12 +165,12 @@ def usage():
 
 
 def main():
-    global listen
-    global port
+    global upload_destination
     global execute
     global command
-    global upload_destination
     global target
+    global listen
+    global port
 
     if not len(sys.argv[1:]):
         usage()
