@@ -110,6 +110,18 @@ def receive_from(connection):
     return buffer
 
 
+# modify any requests destined for the remote host
+def request_handler(buffer):
+    # perform packet modifications
+    return buffer
+
+
+# modify any responses destined for the local host
+def response_handler(buffer):
+    # perform packet modifications
+    return buffer
+
+
 def main():
     # no fancy command line parsing
     if len(sys.argv[1:]) != 5:
