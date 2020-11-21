@@ -86,6 +86,30 @@ def hexdump(src, length = 6):
         print b'\n'.join(result)
 
 
+def receive_from(connection):
+    buffer = ""
+
+    # set a 2 second timeout; depending on
+    # target, this may need to be adjusted
+    connection.settimeout(2)
+
+    try:
+        # keep reading into the buffer until
+        # there is no more data or we timeout
+        while True:
+            data = connection.recv(4096)
+
+            if not data:
+                break
+
+            buffer += data
+
+    except:
+        pass
+
+    return buffer
+
+
 def main():
     # no fancy command line parsing
     if len(sys.argv[1:]) != 5:
