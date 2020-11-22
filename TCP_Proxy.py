@@ -71,7 +71,7 @@ def proxy_handler(client_socket, remote_host, remote_port, receive_first):
             print('[==>] Sent to remote.')
 
 
-# this is a pretty hex dumping function taken directoy from
+# this is a pretty hex dumping function taken directly from
 # the comments here
 # http://code.activestate.com/recipes/142812-hex-dumper
 def hexdump(src, length = 6):
