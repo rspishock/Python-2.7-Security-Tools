@@ -1,8 +1,8 @@
 #! /usr/bin/python
-"Creates a connection to an SSH server and runs a single command."
+"""Creates a connection to an SSH server and runs a single command."""
 
-import subprocess
-import threading
+# import subprocess
+# import threading
 import paramiko
 
 
