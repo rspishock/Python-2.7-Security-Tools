@@ -2,11 +2,22 @@
 """A simple TCP server."""
 
 import threading
+import argparse
 import socket
 
 
+def get_arguments():
+    """Get user supplied arguments from terminal."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--port', dest='port', help='Target port to open.')
+    (options) = parser.parse_args()
+
+    return options
+
 bind_ip = '0.0.0.0'
-bind_port = 9999
+# bind_port = 9999
+options = get_arguments()
+bind_port = int(options.port)
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
